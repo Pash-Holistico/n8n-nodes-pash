@@ -2,6 +2,27 @@ import { INodeProperties } from "n8n-workflow"
 
 export const notify_config: INodeProperties[] = [
 
+	// Campo: Canal de Notificação
+	{
+		displayName: 'Canal',
+		description: "O canal que a notificação será entregue",
+		name: 'channel',
+		type: 'options',
+		default: 'push',
+		displayOptions: {
+			show: {
+				operation: ['notify']
+			}
+		},
+		options: [
+			{
+				name: 'Push',
+				value: 'push',
+				description: 'Notificações Push no aplicativo'
+			}
+		],
+	},
+
 	{
 		displayName: 'Parâmetros da Notificação',
 		name: 'push_notification',
@@ -16,26 +37,11 @@ export const notify_config: INodeProperties[] = [
 		},
 		displayOptions: {
 			show: {
-				operation: ['notify']
+				operation: ['notify'],
+				channel: ['push']
 			}
 		},
 		options: [
-
-			// Campo: Canal de Notificação
-			{
-				displayName: 'Canal',
-				description: "O canal que a notificação será entregue",
-				name: 'channel',
-				type: 'options',
-				default: 'push',
-				options: [
-					{
-						name: 'Push',
-						value: 'push',
-						description: 'Notificações Push no aplicativo'
-					}
-				],
-			},
 
 			// Campo: Título
 			{
@@ -77,6 +83,69 @@ export const notify_config: INodeProperties[] = [
 					}
 				],
 			},
+
+			// Campo: Canal (Android)
+			{
+				displayName: 'ID do canal (Android)',
+				description: "O ID do canal de notificações (apenas android)",
+				name: 'channel_id',
+				type: 'string',
+				default: '',
+				options: [
+					{
+						name: 'Baixa',
+						value: 'low'
+					},
+					{
+						name: 'Alta',
+						value: 'high'
+					}
+				],
+			},
+
+			// Campo: Botões
+			{
+				displayName: 'Botões da notificação',
+				description: "Botões de ação da notificação",
+				name: 'buttons',
+				type: 'fixedCollection',
+				typeOptions: {
+					multipleValues: true,
+					maxValue: 3,
+					multipleValueButtonText: 'Adicionar botão...'
+				},
+				default: {},
+				options: [
+					{
+						name: 'button',
+						displayName: 'Botão',
+						values: [
+							{
+								displayName: 'Texto',
+								name: 'text',
+								required: true,
+								type: 'string',
+								default: '',
+							},
+							{
+								displayName: 'Ação',
+								name: 'action',
+								required: true,
+								type: 'string',
+								default: '',
+							},
+							{
+								displayName: 'ID',
+								name: 'id',
+								required: true,
+								type: 'string',
+								default: '',
+							},
+						],
+					},
+				]
+			},
+
 		]
 	},
 

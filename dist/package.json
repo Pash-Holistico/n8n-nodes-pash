@@ -24,7 +24,7 @@
         "n8nNodesApiVersion": 1,
         "strict": true,
         "credentials": ["dist/credentials/PashApi.credentials.js"],
-        "nodes": ["dist/nodes/Pash/Pash.node.js"]
+        "nodes": ["dist/nodes/Pash/Pash.node.js", "dist/nodes/Pash/PashWebhook.node.js"]
     },
     "devDependencies": {
         "@n8n/node-cli": "*",

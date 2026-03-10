@@ -1,9 +1,8 @@
 {
-	"node": "n8n-nodes-pash",
+	"node": "n8n-nodes-pashTrigger",
 	"nodeVersion": "1.0",
 	"codexVersion": "1.0",
 	"categories": ["Development", "Developer Tools"],
-	"alias": ["pash"],
 	"resources": {
 		"credentialDocumentation": [
 			{
@@ -15,5 +14,6 @@
 				"url": "https://github.com/org/repo?tab=readme-ov-file"
 			}
 		]
-	}
+	},
+	"alias": ["pash"]
 }

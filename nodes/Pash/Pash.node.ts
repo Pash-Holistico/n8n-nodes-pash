@@ -32,7 +32,7 @@ export class Pash implements INodeType {
 	};
 
 	async execute(this: IExecuteFunctions) {
-		
+
 		// Common
 		const operation = this.getNodeParameter('operation', 0)
 		const resource = this.getNodeParameter('resource', 0)
@@ -40,23 +40,51 @@ export class Pash implements INodeType {
 		const callback: INodeExecutionData[] = []
 
 		// Get
-		if(operation === 'get'){
-			
+		if (operation === 'get') {
+
 			// Get User
-			if(resource === 'user'){
+			if (resource === 'user') {
 				const user_id = this.getNodeParameter('user_id', 0)
 				const response = await pashApiRequest.call(this, 'GET', `/users/${user_id}`)
 				callback.push({ json: response })
 			}
 
 			// Get Professional
-			if(resource === 'professional'){
+			if (resource === 'professional') {
 				const professional_id = this.getNodeParameter('professional_id', 0)
 				const response = await pashApiRequest.call(this, 'GET', `/professionals/${professional_id}`)
 				callback.push({ json: response })
 			}
 		}
 
+		// Notify
+		if(operation === 'notify'){
+
+			// Notify
+			const id = resource === 'user' ? this.getNodeParameter('user_id', 0, '') : this.getNodeParameter('professional_id', 0, '')
+			const channel = this.getNodeParameter('channel', 0, '')
+
+			// Push
+			if(channel === 'push'){
+
+				console.log(this.getNodeParameter('push_notification.buttons.button', 0))
+
+				const response = await pashApiRequest.call(this, 'POST', `/send_push`, {
+					id,
+					model: resource,
+					title: this.getNodeParameter('push_notification.title', 0, ''),
+					body: this.getNodeParameter('push_notification.body', 0, ''),
+					priority: this.getNodeParameter('push_notification.priority', 0, 'low'),
+					channel_id: this.getNodeParameter('push_notification.channel_id', 0, 'low'),
+					buttons: this.getNodeParameter('push_notification.buttons.button', 0, [])
+				})
+				callback.push({ json: response })
+			}
+
+		}
+
 		return [callback]
 	}
+
+	
 }
