@@ -87,7 +87,7 @@ export class PashWebhook implements INodeType {
                     },
                     {
                         name: 'Credenciamento Enviado',
-                        value: 'professional/submited',
+                        value: 'professionals/submited',
                         action: 'Credenciamento enviado',
                         description: 'Quando um profissional submete o credenciamento'
                     },
@@ -106,7 +106,7 @@ export class PashWebhook implements INodeType {
 				name: 'default',
 				httpMethod: 'POST',
 				responseMode: 'onReceived',
-				path: '={{"platform/" + $parameter["resource"] + "/" + $parameter["operation"]}}',
+				path: '={{"platform/" + $parameter["operation"]}}',
                 isFullPath: true
 			},
 		],
