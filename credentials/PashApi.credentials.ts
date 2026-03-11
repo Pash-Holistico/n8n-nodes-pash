@@ -15,6 +15,13 @@ export class PashApi implements ICredentialType {
 
 	properties: INodeProperties[] = [
 		{
+			displayName: 'Endpoint',
+			name: 'endpoint',
+			type: 'string',
+			required: true,
+			default: 'https://endpoint.domain.com/path'
+		},
+		{
 			displayName: 'Access Token',
 			name: 'accessToken',
 			type: 'string',
@@ -36,7 +43,7 @@ export class PashApi implements ICredentialType {
 	test: ICredentialTestRequest = {
 		request: {
 			method: 'GET',
-			url: 'http://127.0.0.1:8000/api/external/n8n'
+			url: '={{$credentials.endpoint}}'
 		},
 	}
 }

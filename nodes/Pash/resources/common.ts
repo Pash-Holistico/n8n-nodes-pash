@@ -20,11 +20,15 @@ export const common_config: INodeProperties[] = [
                 value: 'professional',
                 action: 'professional',
                 description: 'Operação de profissionais'
+            },
+            {
+                name: 'API',
+                value: 'api',
+                action: 'API',
+                description: 'Chamada na API'
             }
         ],
         default: 'user'
     },
-
-    
 
 ]

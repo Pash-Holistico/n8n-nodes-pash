@@ -6,6 +6,10 @@ import { professionals_config } from './resources/professionals'
 import { common_config } from './resources/common'
 import { notify_config } from './resources/notify'
 import { pashApiRequest } from './transport'
+import { metadata_config } from './resources/metadata'
+import { api_config } from './resources/api'
+import { list_config } from './resources/list'
+import { methods_config } from './resources/methods'
 
 export class Pash implements INodeType {
 	description: INodeTypeDescription = {
@@ -27,49 +31,52 @@ export class Pash implements INodeType {
 			...common_config,
 			...users_config,
 			...professionals_config,
-			...notify_config
+			...metadata_config,
+			...list_config,
+			...notify_config,
+			...api_config
 		],
 	};
+
+	methods = methods_config;
 
 	async execute(this: IExecuteFunctions) {
 
 		// Common
-		const operation = this.getNodeParameter('operation', 0)
-		const resource = this.getNodeParameter('resource', 0)
+		const operation = this.getNodeParameter('operation', 0, '')
+		const resource = this.getNodeParameter('resource', 0, '')
+		const id = resource === 'user' ? this.getNodeParameter('user_id', 0, '') : this.getNodeParameter('professional_id', 0, '')
 
 		const callback: INodeExecutionData[] = []
 
 		// Get
 		if (operation === 'get') {
+			const response = await pashApiRequest.call(this, 'GET', `/${resource}s/${id}`)
+			callback.push({ json: response })
+		}
 
-			// Get User
-			if (resource === 'user') {
-				const user_id = this.getNodeParameter('user_id', 0)
-				const response = await pashApiRequest.call(this, 'GET', `/users/${user_id}`)
-				callback.push({ json: response })
-			}
+		// List
+		if (operation === 'list') {
+			const page = this.getNodeParameter('page', 0, 1)
+			const per_page = this.getNodeParameter('per_page', 0, 10)
+			const status = this.getNodeParameter('filters.status', 0, null)
+			const term = this.getNodeParameter('filters.term', 0, '')
+			const services = this.getNodeParameter('filters.services', 0, null)
 
-			// Get Professional
-			if (resource === 'professional') {
-				const professional_id = this.getNodeParameter('professional_id', 0)
-				const response = await pashApiRequest.call(this, 'GET', `/professionals/${professional_id}`)
-				callback.push({ json: response })
-			}
+			const response = await pashApiRequest.call(this, 'GET', `/${resource}s`, {}, { page, per_page, status, term, services })
+			callback.push({ json: response })
 		}
 
 		// Notify
-		if(operation === 'notify'){
+		if (operation === 'notify') {
 
 			// Notify
-			const id = resource === 'user' ? this.getNodeParameter('user_id', 0, '') : this.getNodeParameter('professional_id', 0, '')
 			const channel = this.getNodeParameter('channel', 0, '')
 
 			// Push
-			if(channel === 'push'){
+			if (channel === 'push') {
 
-				console.log(this.getNodeParameter('push_notification.buttons.button', 0))
-
-				const response = await pashApiRequest.call(this, 'POST', `/send_push`, {
+				const response = await pashApiRequest.call(this, 'POST', `/notify/push`, {
 					id,
 					model: resource,
 					title: this.getNodeParameter('push_notification.title', 0, ''),
@@ -83,8 +90,44 @@ export class Pash implements INodeType {
 
 		}
 
+		// Insights
+		if (operation === 'insights') {
+			const response = await pashApiRequest.call(this, 'GET', `/insights/${resource}/${id}`)
+			callback.push({ json: response })
+		}
+
+		// Metadata
+		if (operation === 'metadata') {
+
+			const metadata_operation = this.getNodeParameter('metadata_operation', 0, '')
+
+			// Get
+			if (metadata_operation === 'get') {
+				const response = await pashApiRequest.call(this, 'GET', `/metadata/${resource}/${id}`)
+				callback.push({ json: response })
+			}
+
+			// Set
+			if (metadata_operation === 'set') {
+				const response = await pashApiRequest.call(this, 'PUT', `/metadata/${resource}/${id}`, {
+					metadata: this.getNodeParameter('metadata.metadata', 0, [])
+				})
+				callback.push({ json: response })
+			}
+
+		}
+
+		// API
+		if (resource === 'api') {
+			const path = this.getNodeParameter('path', 0, '')
+			const body = this.getNodeParameter('body', 0, '')
+			// @ts-ignore
+			const response = await pashApiRequest.call(this, operation, path, body)
+			callback.push({ json: response })
+		}
+
 		return [callback]
 	}
 
-	
+
 }

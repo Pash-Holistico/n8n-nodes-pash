@@ -29,6 +29,16 @@ export const users_config: INodeProperties[] = [
 				value: 'notify',
 				action: 'Notificar usuário',
 			},
+			{
+				name: 'Insights do Usuário',
+				value: 'insights',
+				action: 'Insights do Usuário',
+			},
+			{
+				name: 'Metadados do Usuário',
+				value: 'metadata',
+				action: 'Metadados do Usuário',
+			}
 		],
 		default: 'get'
 	},
@@ -44,9 +54,36 @@ export const users_config: INodeProperties[] = [
 		required: true,
 		displayOptions: {
 			show: {
-				operation: ['get', 'notify'],
-				resource: ['user']
+				resource: ['user'],
+				operation: ['get', 'notify', 'insights', 'metadata'],
 			}
 		}
 	},
+
+	// Campo: Filtros de Busca
+	{
+		displayName: 'Filtros de busca',
+		name: 'filters',
+		description: 'Limite a busca por filtros',
+		type: 'collection',
+		placeholder: 'Adicionar filtro',
+		default: {},
+		displayOptions: {
+			show: {
+				resource: ['user'],
+				operation: ['list']
+			}
+		},
+		options: [
+
+			// Campo: Termo
+			{
+				displayName: 'Termo',
+				description: 'Termos de busca aceitos: nome, email',
+				name: 'term',
+				default: '',
+				type: 'string'
+			}
+		]
+	}
 ]
