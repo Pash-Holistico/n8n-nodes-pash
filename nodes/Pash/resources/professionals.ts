@@ -1,3 +1,4 @@
+/* eslint-disable n8n-nodes-base/node-param-collection-type-unsorted-items, n8n-nodes-base/node-param-options-type-unsorted-items */
 import { INodeProperties } from "n8n-workflow"
 
 export const professionals_config: INodeProperties[] = [
@@ -30,14 +31,14 @@ export const professionals_config: INodeProperties[] = [
 				action: 'Notificar profissional',
 			},
 			{
-				name: 'Insights do Profissional',
+				name: 'Insights Do Profissional',
 				value: 'insights',
-				action: 'Insights do Profissional',
+				action: 'Insights do profissional',
 			},
 			{
-				name: 'Metadados do Profissional',
+				name: 'Metadados Do Profissional',
 				value: 'metadata',
-				action: 'Metadados do Profissional',
+				action: 'Metadados do profissional',
 			}
 		],
 		default: 'get'
@@ -62,7 +63,7 @@ export const professionals_config: INodeProperties[] = [
 
 	// Campo: Filtros de Busca
 	{
-		displayName: 'Filtros de busca',
+		displayName: 'Filtros De Busca',
 		name: 'filters',
 		description: 'Limite a busca por filtros',
 		type: 'collection',
@@ -111,15 +112,15 @@ export const professionals_config: INodeProperties[] = [
 			},
 
 			{
-				displayName: 'Serviços',
-				description: 'Serviços que o profissional atende',
+				displayName: 'Serviço Names or IDs',
+				description: 'Serviços que o profissional atende. Choose from the list, or specify IDs using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.',
 				name: 'services',
 				type: 'multiOptions',
 				placeholder: 'Selecionar serviços',
 				typeOptions: {
 					loadOptionsMethod: 'getServices'
 				},
-				default: ''
+				default: []
 			},
 
 			// Campo: Termo

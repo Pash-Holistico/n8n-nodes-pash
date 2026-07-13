@@ -16,11 +16,11 @@ export const metadata_config: INodeProperties[] = [
 		},
 		options: [
 			{
-				name: 'Obter metadados',
+				name: 'Obter Metadados',
 				value: 'get'
 			},
 			{
-				name: 'Atualizar metadados',
+				name: 'Atualizar Metadados',
 				value: 'set'
 			}
 		],
@@ -59,7 +59,6 @@ export const metadata_config: INodeProperties[] = [
 					{
 						displayName: 'Valor',
 						name: 'value',
-						required: false,
 						type: 'string',
 						default: '',
 					},

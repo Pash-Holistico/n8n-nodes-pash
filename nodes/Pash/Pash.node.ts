@@ -121,7 +121,7 @@ export class Pash implements INodeType {
 		if (resource === 'api') {
 			const path = this.getNodeParameter('path', 0, '')
 			const body = this.getNodeParameter('body', 0, '')
-			// @ts-ignore
+			// @ts-expect-error Ignorando ESLint
 			const response = await pashApiRequest.call(this, operation, path, body)
 			callback.push({ json: response })
 		}

@@ -1,14 +1,14 @@
 {
   "name": "n8n-nodes-pash",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "Nodes exclusivos da administração do Pash para fluxos N8N",
   "license": "MIT",
-  "homepage": "",
+  "homepage": "https://pash.com.br",
   "keywords": ["n8n-community-node-package"],
   "author": { "name": "Luiz", "email": "luizdeveloper@outlook.com" },
   "repository": {
     "type": "git",
-    "url": "https://github.com/<...>/n8n-nodes-<...>.git"
+    "url": "https://github.com/Pash-Holistico/n8n-nodes-pash"
   },
   "scripts": {
     "build": "n8n-node build",

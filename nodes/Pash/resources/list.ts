@@ -18,7 +18,7 @@ export const list_config: INodeProperties[] = [
 
     // Campo: Resultados por página
     {
-        displayName: 'Resultados por página',
+        displayName: 'Resultados Por Página',
         name: 'per_page',
         type: 'number',
         default: 10,

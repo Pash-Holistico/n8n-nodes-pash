@@ -1,3 +1,4 @@
+/* eslint-disable n8n-nodes-base/node-param-operation-option-action-miscased */
 import type { IWebhookFunctions, INodeType, INodeTypeDescription, IWebhookResponseData, } from 'n8n-workflow'
 
 export class PashWebhook implements INodeType {
@@ -8,6 +9,7 @@ export class PashWebhook implements INodeType {
 		icon: 'file:pash.svg',
 		group: ['trigger'],
 		version: 1,
+        usableAsTool: true,
 		description: 'Recebe eventos de Pash',
 		defaults: {
 			name: 'Pash Webhook',
@@ -21,14 +23,15 @@ export class PashWebhook implements INodeType {
                 displayName: 'Recurso',
                 name: 'resource',
                 type: 'options',
-                default: 'user',
+                default: 'users',
+                noDataExpression: true,
                 options: [
                     {
-                        name: 'Usuários',
+                        name: 'Usuário',
                         value: 'users'
                     },
                     {
-                        name: 'Profissionais',
+                        name: 'Profissional',
                         value: 'professionals'
                     }
                 ]
@@ -39,6 +42,7 @@ export class PashWebhook implements INodeType {
                 displayName: 'Evento',
                 name: 'operation',
                 type: 'options',
+				noDataExpression: true,
                 default: 'users/registered',
                 displayOptions: {
                     show: {
@@ -66,6 +70,7 @@ export class PashWebhook implements INodeType {
                 displayName: 'Evento',
                 name: 'operation',
                 type: 'options',
+				noDataExpression: true,
                 default: 'professionals/registered',
                 displayOptions: {
                     show: {
@@ -94,7 +99,7 @@ export class PashWebhook implements INodeType {
                     {
                         name: 'Onboarding Finalizado',
                         value: 'professionals/started',
-                        action: 'Onboarding Finalizado',
+                        action: 'Onboarding finalizado',
                         description: 'Quando um profissional finaliza o onboarding'
                     },                    
                 ]

@@ -1,3 +1,4 @@
+/* eslint-disable n8n-nodes-base/node-param-collection-type-unsorted-items, n8n-nodes-base/node-param-options-type-unsorted-items, n8n-nodes-base/node-param-collection-type-unsorted-items, n8n-nodes-base/node-param-operation-option-action-miscased */
 import { INodeProperties } from "n8n-workflow"
 
 export const users_config: INodeProperties[] = [
@@ -30,14 +31,14 @@ export const users_config: INodeProperties[] = [
 				action: 'Notificar usuário',
 			},
 			{
-				name: 'Insights do Usuário',
+				name: 'Insights Do Usuário',
 				value: 'insights',
-				action: 'Insights do Usuário',
+				action: 'Insights do usuário',
 			},
 			{
-				name: 'Metadados do Usuário',
+				name: 'Metadados Do Usuário',
 				value: 'metadata',
-				action: 'Metadados do Usuário',
+				action: 'Metadados do usuário',
 			}
 		],
 		default: 'get'
@@ -62,7 +63,7 @@ export const users_config: INodeProperties[] = [
 
 	// Campo: Filtros de Busca
 	{
-		displayName: 'Filtros de busca',
+		displayName: 'Filtros De Busca',
 		name: 'filters',
 		description: 'Limite a busca por filtros',
 		type: 'collection',

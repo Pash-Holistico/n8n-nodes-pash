@@ -8,6 +8,7 @@ export const api_config: INodeProperties[] = [
 		description: "Tipo de operação na API",
 		name: 'operation',
 		type: 'options',
+		noDataExpression: true,
 		default: 'GET',
 		displayOptions: {
 			show: {

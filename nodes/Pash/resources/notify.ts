@@ -1,3 +1,4 @@
+/* eslint-disable n8n-nodes-base/node-param-collection-type-unsorted-items, n8n-nodes-base/node-param-options-type-unsorted-items */
 import { INodeProperties } from "n8n-workflow"
 
 export const notify_config: INodeProperties[] = [
@@ -24,7 +25,7 @@ export const notify_config: INodeProperties[] = [
 	},
 
 	{
-		displayName: 'Parâmetros da Notificação',
+		displayName: 'Parâmetros Da Notificação',
 		name: 'push_notification',
 		description: 'Descrição dos parâmetros',
 		type: 'collection',
@@ -41,6 +42,7 @@ export const notify_config: INodeProperties[] = [
 				channel: ['push']
 			}
 		},
+
 		options: [
 
 			// Campo: Título
@@ -86,7 +88,7 @@ export const notify_config: INodeProperties[] = [
 
 			// Campo: Canal (Android)
 			{
-				displayName: 'ID do canal (Android)',
+				displayName: 'ID Do Canal (Android)',
 				description: "O ID do canal de notificações (apenas android)",
 				name: 'channel_id',
 				type: 'string',
@@ -105,7 +107,7 @@ export const notify_config: INodeProperties[] = [
 
 			// Campo: Botões
 			{
-				displayName: 'Botões da notificação',
+				displayName: 'Botões Da Notificação',
 				description: "Botões de ação da notificação",
 				name: 'buttons',
 				type: 'fixedCollection',
