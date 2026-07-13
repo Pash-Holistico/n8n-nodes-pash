@@ -1,11 +1,16 @@
 {
   "name": "n8n-nodes-pash",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Nodes exclusivos da administração do Pash para fluxos N8N",
   "license": "MIT",
   "homepage": "https://pash.com.br",
-  "keywords": ["n8n-community-node-package"],
-  "author": { "name": "Luiz", "email": "luizdeveloper@outlook.com" },
+  "keywords": [
+    "n8n-community-node-package"
+  ],
+  "author": {
+    "name": "Luiz",
+    "email": "luizdeveloper@outlook.com"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/Pash-Holistico/n8n-nodes-pash"
@@ -19,12 +24,19 @@
     "release": "n8n-node release",
     "prepublishOnly": "n8n-node prerelease"
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "n8n": {
     "n8nNodesApiVersion": 1,
     "strict": true,
-    "credentials": ["dist/credentials/PashApi.credentials.js"],
-    "nodes": ["dist/nodes/Pash/Pash.node.js", "dist/nodes/Pash/PashWebhook.node.js"]
+    "credentials": [
+      "dist/credentials/PashApi.credentials.js"
+    ],
+    "nodes": [
+      "dist/nodes/Pash/Pash.node.js",
+      "dist/nodes/Pash/PashWebhook.node.js"
+    ]
   },
   "devDependencies": {
     "@n8n/node-cli": "*",
@@ -33,5 +45,7 @@
     "release-it": "^19.0.4",
     "typescript": "5.9.2"
   },
-  "peerDependencies": { "n8n-workflow": "*" }
+  "peerDependencies": {
+    "n8n-workflow": "*"
+  }
 }
