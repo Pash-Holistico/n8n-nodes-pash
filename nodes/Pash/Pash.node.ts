@@ -47,7 +47,14 @@ export class Pash implements INodeType {
 		// Common
 		const operation = this.getNodeParameter('operation', 0, '')
 		const resource = this.getNodeParameter('resource', 0, '')
-		const id = resource === 'user' ? this.getNodeParameter('user_id', 0, '') : this.getNodeParameter('professional_id', 0, '')
+
+		let id
+		switch(resource){
+			case 'user': id = this.getNodeParameter('user_id', 0, ''); break;
+			case 'professional':  id = this.getNodeParameter('professional_id', 0, ''); break;
+			case 'appointment': id = this.getNodeParameter('appointment_id', 0, ''); break;
+			default: id = null; break;
+		}
 
 		const callback: INodeExecutionData[] = []
 
@@ -86,6 +93,28 @@ export class Pash implements INodeType {
 					priority: this.getNodeParameter('push_notification.priority', 0, 'low'),
 					channel_id: this.getNodeParameter('push_notification.channel_id', 0, 'low'),
 					buttons: this.getNodeParameter('push_notification.buttons.button', 0, [])
+				})
+				callback.push({ json: response })
+			}
+
+			// SMS
+			if (channel === 'sms') {
+
+				const response = await pashApiRequest.call(this, 'POST', `/notify/sms`, {
+					id,
+					model: resource,
+					text: this.getNodeParameter('text', 0, '')
+				})
+				callback.push({ json: response })
+			}
+
+			// Whatsapp
+			if (channel === 'whatsapp') {
+
+				const response = await pashApiRequest.call(this, 'POST', `/notify/whatsapp`, {
+					id,
+					model: resource,
+					text: this.getNodeParameter('body', 0, '')
 				})
 				callback.push({ json: response })
 			}
