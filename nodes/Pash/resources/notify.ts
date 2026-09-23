@@ -19,11 +19,55 @@ export const notify_config: INodeProperties[] = [
 			{
 				name: 'Push',
 				value: 'push',
-				description: 'Notificações Push no aplicativo'
+				description: 'Notificação Push no aplicativo'
+			},
+			{
+				name: 'SMS',
+				value: 'sms',
+				description: 'Notificação via SMS'
+			},
+			{
+				name: 'Whatsapp',
+				value: 'whatsapp',
+				description: 'Notificação via Whatsapp'
 			}
 		],
 	},
 
+	// SMS
+	{
+		displayName: 'Texto da mensagem',
+		name: 'text',
+		description: 'O texto a ser enviado',
+		type: 'string',
+		placeholder: 'Inclua uma mensagem de até 140 caracteres...',
+		required: true,
+		default: '',
+		displayOptions: {
+			show: {
+				operation: ['notify'],
+				channel: ['sms']
+			}
+		}
+	},
+
+	// Whatsapp
+	{
+		displayName: 'Corpo da mensagem',
+		name: 'body',
+		description: 'O texto a ser enviado',
+		type: 'string',
+		required: true,
+		default: '',
+		displayOptions: {
+			show: {
+				operation: ['notify'],
+				channel: ['whatsapp']
+			}
+		}
+	},
+
+	// Push
 	{
 		displayName: 'Parâmetros Da Notificação',
 		name: 'push_notification',

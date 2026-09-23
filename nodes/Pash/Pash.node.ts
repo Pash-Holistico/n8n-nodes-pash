@@ -10,6 +10,7 @@ import { metadata_config } from './resources/metadata'
 import { api_config } from './resources/api'
 import { list_config } from './resources/list'
 import { methods_config } from './resources/methods'
+import { appointments_config } from './resources/appointments'
 
 export class Pash implements INodeType {
 	description: INodeTypeDescription = {
@@ -31,6 +32,7 @@ export class Pash implements INodeType {
 			...common_config,
 			...users_config,
 			...professionals_config,
+			...appointments_config,
 			...metadata_config,
 			...list_config,
 			...notify_config,
