@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-pash",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Nodes exclusivos da administração do Pash para fluxos N8N",
   "license": "MIT",
   "homepage": "https://pash.com.br",
