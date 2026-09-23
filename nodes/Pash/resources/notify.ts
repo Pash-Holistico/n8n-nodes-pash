@@ -36,7 +36,7 @@ export const notify_config: INodeProperties[] = [
 
 	// SMS
 	{
-		displayName: 'Texto da mensagem',
+		displayName: 'Texto Da Mensagem',
 		name: 'text',
 		description: 'O texto a ser enviado',
 		type: 'string',
@@ -53,7 +53,7 @@ export const notify_config: INodeProperties[] = [
 
 	// Whatsapp
 	{
-		displayName: 'Corpo da mensagem',
+		displayName: 'Corpo Da Mensagem',
 		name: 'body',
 		description: 'O texto a ser enviado',
 		type: 'string',
